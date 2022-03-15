@@ -1,4 +1,7 @@
 
+<%@tag description="Overall Page template" pageEncoding="UTF-8"%>
+<%@attribute name="titulo" fragment="true" %>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -21,7 +24,7 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.jsp">Inicio</a>
+                    <a class="nav-link" aria-current="page" href="index.jsp">Inicio</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Trabajadores</a>
@@ -30,7 +33,7 @@
                     <a class="nav-link" href="#">Departamentos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="CargoController?accion=index">Cargos</a>
+                    <a class="nav-link" href="CargoController?accion=listar">Cargos</a>
                   </li>
                 </ul>
               </div>
@@ -39,10 +42,10 @@
       <div class="container">
          
         <h1>
-          Inicio
+            <jsp:invoke fragment="titulo"/>
         </h1>
 
-          
+          <jsp:doBody/>
           
 
       </div>

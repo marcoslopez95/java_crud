@@ -1,4 +1,6 @@
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -21,7 +23,7 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.jsp">Inicio</a>
+                    <a class="nav-link" aria-current="page" href="index.jsp">Inicio</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Trabajadores</a>
@@ -30,22 +32,44 @@
                     <a class="nav-link" href="#">Departamentos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="CargoController?accion=index">Cargos</a>
+                    <a class="nav-link active" href="CargoController?accion=index">Cargos</a>
                   </li>
                 </ul>
               </div>
             </div>
           </nav>
+      
       <div class="container">
-         
-        <h1>
-          Inicio
-        </h1>
-
-          
+          <div class='row mx-auto my-auto'>
+              <div class="col-3">
+                    <h1>
+                        Cargos
+                    </h1>       
+              </div>
+              <div class="col text-end p-0 pt-2">
+                  <a class="btn btn-primary" href="CargoController?accion=index">Regresar</a>
+              </div>
+              
+          </div>
+             
+          <div class="row">
+              <form class="" action='CargoController'>
+                  <div class='col-6'>
+                    <label for='nombre' class="form-group">Nombre:</label>
+                    <input type="text" name='nombre' required class='form-control'>    
+                  </div>
+                  <div class="col mt-2">
+                      <input type='submit' value="Guardar" name='accion' class="btn btn-primary">
+                  </div>
+                  
+                   
+              </form>
+          </div>
+ 
           
 
       </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
   </body>
+  
