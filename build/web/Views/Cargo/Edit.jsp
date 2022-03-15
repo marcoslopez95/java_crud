@@ -31,7 +31,7 @@
                     <a class="nav-link" href="#">Trabajadores</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Departamentos</a>
+                    <a class="nav-link" href="DepartamentoController?accion=index">Departamentos</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" href="CargoController?accion=listar">Cargos</a>
@@ -45,7 +45,7 @@
           <div class='row mx-auto my-auto'>
               <div class="col-3">
                     <h1>
-                        Cargos
+                        Actualizar Cargo
                     </h1>       
               </div>
               <div class="col text-end p-0 pt-2">

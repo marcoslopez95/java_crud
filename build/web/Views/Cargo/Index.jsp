@@ -32,7 +32,7 @@
                     <a class="nav-link" href="#">Trabajadores</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Departamentos</a>
+                    <a class="nav-link" href="DepartamentoController?accion=index">Departamentos</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" href="CargoController?accion=index">Cargos</a>

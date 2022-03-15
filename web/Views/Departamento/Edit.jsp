@@ -1,7 +1,6 @@
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.List"%>
-<%@page import="Models.Cargo"%>
-<%@page import="ModelsDAO.CargoDAO"%>
+
+<%@page import="ModelsDAO.DepartamentoDAO"%>
+<%@page import="Models.Departamento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 
 <!doctype html>
@@ -32,60 +31,50 @@
                     <a class="nav-link" href="#">Trabajadores</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="DepartamentoController?accion=index">Departamentos</a>
+                    <a class="nav-link" href="#">Departamentos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="CargoController?accion=index">Cargos</a>
+                    <a class="nav-link active" href="CargoController?accion=listar">Cargos</a>
                   </li>
                 </ul>
               </div>
             </div>
           </nav>
+      
       <div class="container">
           <div class='row mx-auto my-auto'>
-              <div class="col-3">
+              <div class="col-6">
                     <h1>
-                        Cargos
+                        Actualizar Departamento
                     </h1>       
               </div>
               <div class="col text-end p-0 pt-2">
-                  <a class="btn btn-primary" href="CargoController?accion=crear">Crear Cargo</a>
+                  <a class="btn btn-primary" href="DepartamentoController?accion=index">Regresar</a>
               </div>
               
           </div>
              
-        
+          <div class="row">
+              <%
+                  DepartamentoDAO dao = new DepartamentoDAO();
+                  int id = Integer.parseInt((String)request.getAttribute("id"));
+                  Departamento departamento = (Departamento)dao.show(id);
+              %>
+              <form class="" action='DepartamentoController'>
+                  <div class='col-6'>
+                    <label for='nombre' class="form-group">Nombre:</label>
 
-          <table class="table table-hover">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>Nombre</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    
-            <%
-                CargoDAO dao = new CargoDAO();
-                List<Cargo>list = dao.index();
-                Iterator<Cargo>iter = list.iterator();
-                Cargo car = null;
-                
-                while(iter.hasNext()){
-                    car = iter.next();
-                
-            %>
-                <tr>
-                    <td><%= car.getId() %></td>
-                    <td><%= car.getNombre() %></td>
-                    <td>
-                        <a class="btn btn-primary" href="CargoController?accion=editar&id=<%= car.getId() %>">Editar</a>
-                        <a class="btn btn-primary" href="CargoController?accion=eliminar&id=<%= car.getId() %>">Eliminar</a>
-                    </td>
-                </tr>
-                <% } %>
-    
-</table>
+                    <input type="text" name='nombre' required class='form-control' value="<%= departamento.getNombre()%>">   
+                    <input type="hidden" name='id' value="<%= departamento.getId()%>">
+                  </div>
+                  <div class="col mt-2">
+                      <input type='submit' value="Actualizar" name='accion' class="btn btn-primary">
+                  </div>
+                  
+                   
+              </form>
+          </div>
+ 
           
 
       </div>

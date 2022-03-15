@@ -1,7 +1,7 @@
+<%@page import="ModelsDAO.DepartamentoDAO"%>
+<%@page import="Models.Departamento"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="Models.Cargo"%>
-<%@page import="ModelsDAO.CargoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 
 <!doctype html>
@@ -32,7 +32,7 @@
                     <a class="nav-link" href="#">Trabajadores</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="DepartamentoController?accion=index">Departamentos</a>
+                    <a class="nav-link activa" href="DepartamentoController?accion=index">Departamentos</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" href="CargoController?accion=index">Cargos</a>
@@ -45,11 +45,11 @@
           <div class='row mx-auto my-auto'>
               <div class="col-3">
                     <h1>
-                        Cargos
+                        Departamentos
                     </h1>       
               </div>
               <div class="col text-end p-0 pt-2">
-                  <a class="btn btn-primary" href="CargoController?accion=crear">Crear Cargo</a>
+                  <a class="btn btn-primary" href="departamentogoController?accion=crear">Crear Departamento</a>
               </div>
               
           </div>
@@ -66,21 +66,21 @@
     </thead>
     
             <%
-                CargoDAO dao = new CargoDAO();
-                List<Cargo>list = dao.index();
-                Iterator<Cargo>iter = list.iterator();
-                Cargo car = null;
+                DepartamentoDAO dao = new DepartamentoDAO();
+                List<Departamento>list = dao.index();
+                Iterator<Departamento>iter = list.iterator();
+                Departamento departamento = null;
                 
                 while(iter.hasNext()){
-                    car = iter.next();
+                    departamento = iter.next();
                 
             %>
                 <tr>
-                    <td><%= car.getId() %></td>
-                    <td><%= car.getNombre() %></td>
+                    <td><%= departamento.getId() %></td>
+                    <td><%= departamento.getNombre() %></td>
                     <td>
-                        <a class="btn btn-primary" href="CargoController?accion=editar&id=<%= car.getId() %>">Editar</a>
-                        <a class="btn btn-primary" href="CargoController?accion=eliminar&id=<%= car.getId() %>">Eliminar</a>
+                        <a class="btn btn-primary" href="DepartamentoController?accion=editar&id=<%= departamento.getId() %>">Editar</a>
+                        <a class="btn btn-primary" href="DepartamentoController?accion=eliminar&id=<%= departamento.getId() %>">Eliminar</a>
                     </td>
                 </tr>
                 <% } %>
