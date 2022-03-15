@@ -106,4 +106,27 @@ public class CargoDAO implements Interfaz{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public List getCountAllTrabajadores(){
+        System.out.println("algo");
+        ArrayList<Cargo>list = new ArrayList<>();
+        String sql = "SELECT COUNT(nombres) AS cantidad, nombre FROM cargos LEFT JOIN trabajadores ON id_cargo=cargos.id GROUP BY (nombre);";
+        try{
+                con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Cargo cargo = new Cargo();
+                cargo.setNombre(rs.getString("nombre"));
+                cargo.setCantidad(rs.getInt("cantidad"));
+                list.add(cargo);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("finalizo");
+        return list;
+                
+    }
+    
 }

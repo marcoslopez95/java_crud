@@ -1,4 +1,12 @@
 
+<%@page import="ModelsDAO.CargoDAO"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="ModelsDAO.TrabajadorDAO"%>
+<%@page import="ModelsDAO.DepartamentoDAO"%>
+<%@page import="Models.Trabajador"%>
+<%@page import="Models.Departamento"%>
+<%@page import="Models.Cargo"%>
 <!doctype html>
 <html lang="es">
   <head>
@@ -42,7 +50,116 @@
           Inicio
         </h1>
 
-          
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <td colspan="2">
+                          Cantidad de Trabajadores con el mismo Nombre
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>
+                          Nombre
+                      </th>
+                      <th>
+                          Cantidad de Personas
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <%
+                   TrabajadorDAO dao = new TrabajadorDAO();
+                List<Trabajador>list = dao.getCountAllNames();
+                Iterator<Trabajador>iter = list.iterator();
+                Trabajador trabajador = null;
+                
+                while(iter.hasNext()){
+                    trabajador = iter.next();
+                
+                  %>
+               <tr>
+                <td><%= trabajador.getCantidad() %></td>
+                <td><%= trabajador.getNombres() %></td>
+               </tr>
+                  <%
+                    }
+                  %>
+              </tbody>
+          </table>
+              
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <td colspan="2">
+                          Cantidad de Trabajadores por Cargo
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>
+                          Cargo
+                      </th>
+                      <th>
+                          Cantidad de Personas
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <%
+                    CargoDAO dao2 = new CargoDAO();
+                    List<Cargo>list2 = dao2.getCountAllTrabajadores();
+                    Iterator<Cargo>iter2 = list2.iterator();
+                    Cargo cargo = null;
+                
+                while(iter2.hasNext()){
+                    cargo = iter2.next();
+                
+                  %>
+               <tr>
+                <td><%= cargo.getCantidad() %></td>
+                <td><%= cargo.getNombre() %></td>
+               </tr>
+                  <%
+                    }
+                  %>
+              </tbody>
+          </table>
+              
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <td colspan="2">
+                          Cantidad de Trabajadores por Departamento
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>
+                          Departamento
+                      </th>
+                      <th>
+                          Cantidad de Personas
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <%
+                    DepartamentoDAO dao3 = new DepartamentoDAO();
+                    List<Departamento>list3 = dao3.getCountAllTrabajadores();
+                    Iterator<Departamento>iter3 = list3.iterator();
+                    Departamento departamento = null;
+                
+                while(iter3.hasNext()){
+                    departamento = iter3.next();
+                
+                  %>
+               <tr>
+                <td><%= departamento.getCantidad() %></td>
+                <td><%= departamento.getNombre() %></td>
+               </tr>
+                  <%
+                    }
+                  %>
+              </tbody>
+          </table>
           
 
       </div>

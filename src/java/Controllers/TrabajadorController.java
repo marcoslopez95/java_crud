@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "TrabajadorController", urlPatterns = {"/TrabajadorController"})
 public class TrabajadorController extends HttpServlet {
 
-    String index = "Views/Departamento/Index.jsp";
-    String add = "Views/Departamento/Add.jsp";
-    String edit = "Views/Departamento/Edit.jsp";
+    String index = "Views/Trabajador/Index.jsp";
+    String add = "Views/Trabajador/Add.jsp";
+    String edit = "Views/Trabajador/Edit.jsp";
     
-    Trabajador departamento = new Trabajador();
+    Trabajador trabajador = new Trabajador();
     TrabajadorDAO dao = new TrabajadorDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,9 +75,17 @@ public class TrabajadorController extends HttpServlet {
               acceso = add;
         }else if( action.equalsIgnoreCase("Guardar")){
             String nombre   = request.getParameter("nombres");
-            departamento.setNombres(nombre);
+            String cedula   = request.getParameter("cedula");
+            int edad     = Integer.parseInt(request.getParameter("edad"));
+            int id_departamento     = Integer.parseInt(request.getParameter("id_departamento"));
+            int id_cargo     = Integer.parseInt(request.getParameter("id_cargo"));
             
-            dao.store(departamento);
+            trabajador.setNombres(nombre);
+            trabajador.setCedula(cedula);
+            trabajador.setEdad(edad);
+            trabajador.setId_cargo(id_cargo);
+            trabajador.setId_departamento(id_departamento);
+            dao.store(trabajador);
             
             acceso = index;
         }
@@ -89,16 +97,27 @@ public class TrabajadorController extends HttpServlet {
         else if( action.equalsIgnoreCase("Actualizar")){
             int id           = Integer.parseInt(request.getParameter("id"));
             String nombre   = request.getParameter("nombres");
+            String cedula   = request.getParameter("cedula");
+            int edad     = Integer.parseInt(request.getParameter("edad"));
+            int id_departamento     = Integer.parseInt(request.getParameter("id_departamento"));
+            int id_cargo     = Integer.parseInt(request.getParameter("id_cargo"));
             
-            departamento.setNombres(nombre);
-            departamento.setId(id);
-            dao.update(departamento);
+            trabajador.setNombres(nombre);
+            trabajador.setId(id);
+            trabajador.setCedula(cedula);
+            trabajador.setEdad(edad);
+            trabajador.setId_cargo(id_cargo);
+            trabajador.setId_departamento(id_departamento);
+            
+            trabajador.setNombres(nombre);
+            trabajador.setId(id);
+            dao.update(trabajador);
             
             acceso = index;
         }
         else if( action.equalsIgnoreCase("eliminar")){
             int id = Integer.parseInt(request.getParameter("id"));
-            departamento.setId(id);
+            trabajador.setId(id);
             dao.delete(id);
             
             acceso = index;

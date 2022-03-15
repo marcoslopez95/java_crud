@@ -108,4 +108,27 @@ public class DepartamentoDAO implements Interfaz{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public List getCountAllTrabajadores(){
+        System.out.println("algo");
+        ArrayList<Departamento>list = new ArrayList<>();
+        String sql = "SELECT COUNT(nombres) AS cantidad, nombre FROM departamentos LEFT JOIN trabajadores ON id_departamento=departamentos.id GROUP BY (nombre);";
+        try{
+                con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Departamento departamento = new Departamento();
+                departamento.setNombre(rs.getString("nombre"));
+                departamento.setCantidad(rs.getInt("cantidad"));
+                list.add(departamento);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("finalizo");
+        return list;
+                
+    }
+    
 }

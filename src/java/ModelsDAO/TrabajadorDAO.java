@@ -27,7 +27,7 @@ public class TrabajadorDAO implements Interfaz{
                             + "FROM trabajadores "
                             + "INNER JOIN departamentos "
                                 + "ON id_departamento=departamentos.id"
-                            + " INNER JOIN cargos"
+                            + " INNER JOIN cargos "
                                 + "ON id_cargo=cargos.id;";
         try {
             con = cn.getConnection();
@@ -35,16 +35,16 @@ public class TrabajadorDAO implements Interfaz{
             rs = ps.executeQuery();
              
             while (rs.next()) {
-                Trabajador trabajador = new Trabajador();
-                trabajador.setId((rs.getInt("id")));
-                trabajador.setCedula(rs.getString("cedula"));
-                trabajador.setNombres(rs.getString("nombres"));
-                trabajador.setNombres(rs.getString("nombre_departamento"));
-                trabajador.setNombres(rs.getString("nombre_cargo"));
-                trabajador.setId((rs.getInt("edad")));
-                trabajador.setId((rs.getInt("id_departamento")));
-                trabajador.setId((rs.getInt("id_cargo")));
-                list.add(trabajador);
+                Trabajador trab = new Trabajador();
+                trab.setId((rs.getInt("id")));
+                trab.setCedula(rs.getString("cedula"));
+                trab.setNombres(rs.getString("nombres"));
+                trab.setDepartamento(rs.getString("nombre_departamento"));
+                trab.setCargo(rs.getString("nombre_cargo"));
+                trab.setEdad((rs.getInt("edad")));
+                trab.setId_departamento((rs.getInt("id_departamento")));
+                trab.setId_cargo((rs.getInt("id_cargo")));
+                list.add(trab);
             }
         } catch (Exception e) {
         }
@@ -54,15 +54,9 @@ public class TrabajadorDAO implements Interfaz{
 
     @Override
     public Model show(int id) {
-         String sql = "SELECT trabajadores.*, "
-                            + "departamentos.nombre as nombre_departamento, "
-                            + "cargos.nombre as nombre_cargo "
-                            + "FROM trabajadores "
-                            + "INNER JOIN departamentos "
-                                + "ON id_departamento=departamentos.id"
-                            + " INNER JOIN cargos"
-                                + "ON id_cargo=cargos.id"
-                            + "WHERE id="+id;
+         String sql = "SELECT trabajadores.* "
+                            + "FROM trabajadores"
+                            + " WHERE id="+id;
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -72,11 +66,9 @@ public class TrabajadorDAO implements Interfaz{
                 trabajador.setId((rs.getInt("id")));
                 trabajador.setCedula(rs.getString("cedula"));
                 trabajador.setNombres(rs.getString("nombres"));
-                trabajador.setNombres(rs.getString("nombre_departamento"));
-                trabajador.setNombres(rs.getString("nombre_cargo"));
-                trabajador.setId((rs.getInt("edad")));
-                trabajador.setId((rs.getInt("id_departamento")));
-                trabajador.setId((rs.getInt("id_cargo")));
+                trabajador.setEdad((rs.getInt("edad")));
+                trabajador.setId_departamento((rs.getInt("id_departamento")));
+                trabajador.setId_cargo((rs.getInt("id_cargo")));
             }
         } catch (Exception e) {
         }
@@ -85,8 +77,8 @@ public class TrabajadorDAO implements Interfaz{
     }
 
     public boolean store(Trabajador trabajador) {
-        String sql = "INSERT INTO rrabajadores(cedula,nombres,edad,id_departamento,id_cargo)"
-                           + "VALUES"
+        String sql = "INSERT INTO trabajadores(cedula,nombres,edad,id_departamento,id_cargo) "
+                           + "VALUES "
                            + "("
                                 + "'"+ trabajador.getCedula()+"',"
                                 + "'"+ trabajador.getNombres() +"',"
@@ -105,12 +97,13 @@ public class TrabajadorDAO implements Interfaz{
     }
 
     public boolean update(Trabajador trabajador) {
-          String sql = "UPDATE  Trabajadores SET "
-                            + "cedula="+ "'"+ trabajador.getCedula()+"',"
+          String sql = "UPDATE trabajadores SET "
+                            +"cedula="+ "'"+ trabajador.getCedula()+"',"
                             +"nombres="+ "'"+ trabajador.getNombres() +"',"
                             +"edad="+ trabajador.getEdad()+","
                             +"id_departamento="+ trabajador.getId_departamento()+","
-                            +"id_cargo="+ trabajador.getId_cargo()
+                            +"id_cargo="+ trabajador.getId_cargo()+" "
+                            +"WHERE id="+ trabajador.getId()
                              ;
         
         try {
@@ -133,6 +126,29 @@ public class TrabajadorDAO implements Interfaz{
         } catch (Exception e) {
         }
         return false;
+    }
+    
+    public List getCountAllNames(){
+        System.out.println("algo");
+        ArrayList<Trabajador>list = new ArrayList<>();
+        String sql = "SELECT COUNT(*) AS cantidad, nombres FROM trabajadores GROUP BY (nombres);";
+        try{
+                con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Trabajador trab = new Trabajador();
+                trab.setNombres(rs.getString("nombres"));
+                trab.setCantidad(rs.getInt("cantidad"));
+                list.add(trab);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println("finalizo");
+        return list;
+                
     }
 
     @Override

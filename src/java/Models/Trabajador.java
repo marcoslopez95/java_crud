@@ -4,11 +4,23 @@ package Models;
 public class Trabajador extends Model{
     String cedula;
     String nombres;
+    String cargo;
+    String departamento;
     int id_departamento;
     int id_cargo;
     int edad;
 
     public Trabajador() {
+    }
+
+    public Trabajador(String cedula, String nombres, String cargo, String departamento, int id_departamento, int id_cargo, int edad) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.cargo = cargo;
+        this.departamento = departamento;
+        this.id_departamento = id_departamento;
+        this.id_cargo = id_cargo;
+        this.edad = edad;
     }
 
     public String getCedula() {
@@ -25,6 +37,22 @@ public class Trabajador extends Model{
 
     public void setNombres(String nombres) {
         this.nombres = nombres;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public int getId_departamento() {
@@ -51,12 +79,23 @@ public class Trabajador extends Model{
         this.edad = edad;
     }
 
-    public Trabajador(String cedula, String nombres, int id_departamento, int id_cargo, int edad) {
-        this.cedula = cedula;
-        this.nombres = nombres;
-        this.id_departamento = id_departamento;
-        this.id_cargo = id_cargo;
-        this.edad = edad;
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    
+    
 
 }

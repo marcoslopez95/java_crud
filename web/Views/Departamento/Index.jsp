@@ -29,7 +29,7 @@
                     <a class="nav-link" aria-current="page" href="index.jsp">Inicio</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Trabajadores</a>
+                    <a class="nav-link" href="TrabajadorController?accion=index">Trabajadores</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link activa" href="DepartamentoController?accion=index">Departamentos</a>
