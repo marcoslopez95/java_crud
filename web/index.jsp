@@ -50,7 +50,7 @@
           Inicio
         </h1>
 
-          <table class="table table-hover">
+          <table class="table table-hover" style="width:30%; float:left">
               <thead>
                   <tr>
                       <td colspan="2">
@@ -87,7 +87,7 @@
               </tbody>
           </table>
               
-          <table class="table table-hover">
+          <table class="table table-hover" style="width:30%; float: right">
               <thead>
                   <tr>
                       <td colspan="2">

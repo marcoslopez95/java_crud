@@ -71,7 +71,9 @@ public class CargoController extends HttpServlet {
         }else if( action.equalsIgnoreCase("crear")){
               acceso = add;
         }else if( action.equalsIgnoreCase("Guardar")){
+            
             String nombre   = request.getParameter("nombre");
+            
             cargo.setNombre(nombre);
             
             dao.store(cargo);

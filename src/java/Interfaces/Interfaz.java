@@ -10,4 +10,5 @@ public interface Interfaz {
     public boolean store(Model mod);
     public boolean update(Model mod);
     public boolean delete(int id);
+    
 }

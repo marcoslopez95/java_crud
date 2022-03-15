@@ -129,4 +129,24 @@ public class CargoDAO implements Interfaz{
                 
     }
     
+    public boolean Exists(String nombre){
+         String sql = "SELECT * FROM cargos WHERE nombre ILIKE '%"+nombre+"%'";
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+             
+            while (rs.next()) {
+                cargo.setId((rs.getInt("id")));
+                cargo.setNombre(rs.getString("nombre"));
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        
+        
+    }
+    
 }

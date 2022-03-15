@@ -51,7 +51,7 @@
               <div class="col text-end p-0 pt-2">
                   <a class="btn btn-primary" href="CargoController?accion=crear">Crear Cargo</a>
               </div>
-              
+            
           </div>
              
         
